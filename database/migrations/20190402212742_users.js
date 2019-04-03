@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
 
       users.string('department', 240)
       .notNullable()
-      .unique();
+
 
   });
 };
