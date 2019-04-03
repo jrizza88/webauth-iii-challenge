@@ -64,4 +64,4 @@ typings/
 .next
 
 # secret config stuff
-** /config/secrets.js
+config/secrets.js
