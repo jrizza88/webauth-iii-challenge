@@ -17,7 +17,7 @@ axios.interceptors.request.use(
     }
 );
 
-export default component => {
+export default function(Component) {
     return class Authenticated extends 
     React.Component {
         render() {
@@ -25,10 +25,9 @@ export default component => {
 
             const notLoggedIn = <div>Login to proceed </div>
 
-            return 
-            <> 
-            {token > <Component {...this.props} /> : notLoggedIn }
-            </>
+            return <> {token ? <Component 
+                {...this.props} /> : notLoggedIn} </>
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // const Users = require('../users/users-model');
@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
          } else {
              console.log('token confirmed: ', decodedToken)
              req.decodedJwt = decodedToken;
-             next()
+             next();
          }    
         });
     } else {

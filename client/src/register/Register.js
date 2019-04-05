@@ -2,17 +2,16 @@
 import React from 'react';
 import axios from 'axios';
 
-
-class Login extends React.Component {
+class Register extends React.Component {
     state = {
         username: "",
         password: "",
+        department: ""
     }
-
     render() {
         return (
             <>
-            <h2>Login</h2>
+            <h2>Register New User</h2>
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <label htmlFor="username">username</label>
@@ -33,9 +32,18 @@ class Login extends React.Component {
                         onChange={this.handleInputChange}
                         type="text"
                         />
+                    <label htmlFor="departmnet">department</label>
+                        <input
+                        placeholder="department"
+                        name="department"
+                        id="department"
+                        value={this.state.department}
+                        onChange={this.handleInputChange}
+                        type="text"
+                        />
                 </div>
                 <div>
-                    <button type="submit">Login</button>
+                    <button type="submit">Register</button>
                 </div>
             </form>
             </>
@@ -51,19 +59,22 @@ class Login extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        const endpoint = 'http://localhost:7000/api/auth/login';
+        const endpoint = 'http://localhost:7000/api/auth/register';
 
         axios.post(endpoint, this.state)
         .then (res => {
-            console.log('post login request', res)
-            console.log('post request...', res.data)
-            localStorage.setItem('jwt', res.data.token)
+            // localStorage.setItem('jwt', res.data.token)
             this.props.history.push('/users')
             console.log('response data: ', res.data)
         }).catch(e => {
             console.error(e);
         })
     };
+
+    redirect = () => {
+        localStorage.setItem('jwt');
+        this.state.history.push('/login');
+    }
 }
 
-export default Login;
+export default Register;
