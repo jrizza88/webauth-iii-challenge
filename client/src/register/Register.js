@@ -63,18 +63,13 @@ class Register extends React.Component {
 
         axios.post(endpoint, this.state)
         .then (res => {
-            // localStorage.setItem('jwt', res.data.token)
-            this.props.history.push('/users')
+            localStorage.setItem('jwt', res.data.token)
+            this.state.history.push('/users')
             console.log('response data: ', res.data)
         }).catch(e => {
             console.error(e);
         })
     };
-
-    redirect = () => {
-        localStorage.setItem('jwt');
-        this.state.history.push('/login');
-    }
 }
 
 export default Register;
